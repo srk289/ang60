@@ -1,0 +1,19 @@
+{
+  "name": "Angular60",
+  "version": "0.0.1",
+  "authors": [
+    "Srikanth Kondaparthy <srk289@gmail.com>"
+  ],
+  "description": "Angular60",
+  "main": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular":"^1.3.*",
+    "angular-route":"*",
+    "angular-animate":"*"
+  }
+}
