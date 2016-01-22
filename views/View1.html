@@ -1,8 +1,17 @@
 <div class="container">
-	<input type="text" data-ng-model="name" />
+	<input type="text" data-ng-model="filter.name" />
 	<ul>
-		<li ng-repeat="cust in customers | filter:name">
+		<li ng-repeat="cust in customers | filter:filter.name">
 			{{ cust.name | lowercase }}
 		</li>
 	</ul>
+
+	<br/>
+	New Customer name: <br/>
+	<input type="text" data-ng-model="newCustomer.name"><br/>
+	New Customer city: <br/>
+	<input type="text" data-ng-model="newCustomer.city"><br/>
+
+	<button data-ng-click='addCustomer()'>Add customer</button>
+	<a href="#/view2">View 2</a>
 </div>

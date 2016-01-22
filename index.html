@@ -25,11 +25,18 @@
 				{name: 'John doe', city: 'syd'},
 				{name: 'Vin smith', city: 'mel'}
 			];
+
+			$scope.addCustomer = function(){
+				$scope.customers.push({
+					name: $scope.newCustomer.name,
+					city: $scope.newCustomer.city
+				});
+			}
 		}
 
 		var configuration = function($routeProvider){
 			$routeProvider
-				.when('/', {
+				.when('/view1', {
 					controller: 'SimpleController',
 					templateUrl: 'views/View1.html'
 				})
@@ -37,7 +44,7 @@
 					controller: 'SimpleController',
 					templateUrl: 'views/View2.html'
 				})
-				.otherwise({ redirectTo: '/' });
+				.otherwise({ redirectTo: '/view1' });
 		}
 
 		demoApp.config(['$routeProvider', configuration]);
