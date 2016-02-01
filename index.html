@@ -15,24 +15,21 @@
 	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript">
 	
-		var demoApp = angular.module('app', ['ngRoute']);
+		var mainApp = angular.module('app', ['ngRoute']);
 			controllers = {};
 		
-		controllers.SimpleController = function($scope){
-			$scope.customers = [
-				{name: 'John Smith', city: 'phoenix'},
-				{name: 'sri doe', city: 'hyd'},
-				{name: 'John doe', city: 'syd'},
-				{name: 'Vin smith', city: 'mel'}
-			];
+		controllers.SimpleController = function($scope, factory){
+			
+			$scope.customers = factory.getcustomers();
 
 			$scope.addCustomer = function(){
-				$scope.customers.push({
+				factory.pushcustomer({
 					name: $scope.newCustomer.name,
 					city: $scope.newCustomer.city
 				});
 			}
 		}
+
 
 		var configuration = function($routeProvider){
 			$routeProvider
@@ -47,9 +44,32 @@
 				.otherwise({ redirectTo: '/view1' });
 		}
 
-		demoApp.config(['$routeProvider', configuration]);
-		demoApp.controller(controllers);
-		
+		var factory = function(){
+
+			var customers = [
+				{name: 'John Smith', city: 'phoenix'},
+				{name: 'sri doe', city: 'hyd'},
+				{name: 'John doe', city: 'syd'},
+				{name: 'Vin smith', city: 'mel'}
+			];
+
+			var factory = {};
+			factory.getcustomers = function (){
+
+				return customers;
+			}
+
+			factory.pushcustomer = function (customer){
+				customers.push(customer);
+			}
+
+			return factory;
+
+		}
+
+		mainApp.config(['$routeProvider', configuration]);
+		mainApp.controller(controllers);
+		mainApp.factory('factory', factory);
 
 	</script>
 </body>
